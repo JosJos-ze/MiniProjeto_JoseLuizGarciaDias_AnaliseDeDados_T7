@@ -27,3 +27,13 @@ print("\nColunas:", df.columns.tolist())
 print("\nTipos de dados:")
 print(df.dtypes)
 print(df.head())
+
+# ################# Sprint 2: Conversão de dados #################
+print("\n" + "=" * 100)
+print("\n----- Sprint 2: Conversão de dados -----")
+print("\n" + "=" * 100)
+
+# Converte DATA de string no formato (dd/mm/aaaa) para datetime real
+df["DATA"] = pd.to_datetime(df["DATA"], format="%d/%m/%Y", errors="coerce")
+print("\nTipos de dados após conversão:")
+print(df.dtypes)
