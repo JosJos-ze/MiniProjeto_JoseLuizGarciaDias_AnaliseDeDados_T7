@@ -78,3 +78,66 @@ for coluna, substituto in {
         .replace({"#N/D": pd.NA, "": pd.NA})
         .fillna(substituto)
     )
+
+# ################# Sprint 4: Análise estatística com a coluna de número de filhos (CL_FHL) #################
+print("\n" + "=" * 100)
+print("\n----- Sprint 4: Análise estatística com a coluna de número de filhos (CL_FHL) -----")
+print("\n" + "=" * 100)
+
+#Aqui poderia ultilizar o comando describe(), para gerar um resumo estatístico da coluna CL_FHL, mas optei por fazer manualmente para deixar os dados mais claros e organizados ao usuário.
+media = df["CL_FHL"].mean() 
+mediana = df["CL_FHL"].median()
+desvio_padrao = df["CL_FHL"].std()
+moda = df["CL_FHL"].mode()[0]  # Pega o primeiro valor da moda, caso haja mais de um
+maximo = df["CL_FHL"].max()
+minimo = df["CL_FHL"].min()
+contagem = df["CL_FHL"].count()
+quartis = df["CL_FHL"].quantile([0.25, 0.5, 0.75])
+
+print(f"Média: {media:.2f}")
+print(f"Mediana: {mediana}")
+print(f"Desvio padrão: {desvio_padrao:.2f}")
+print(f"Moda: {moda}")
+print(f"Máximo: {maximo} | Mínimo: {minimo}")
+print(f"Contagem: {contagem}")
+print("Quartis (25%, 50%, 75%):\n", quartis)
+
+#Cruzando a categoria do produto (PR_CAT) com o número de filhos (CL_FHL), para ver se existe alguma relação entre a categoria do produto e o número de filhos do cliente.
+df_cruzado = df.groupby("PR_CAT")["CL_FHL"].mean().sort_values(ascending=False)
+df_tendencia = df.groupby(["PR_CAT", "CL_FHL"]).size().unstack(fill_value=0)
+print("\n=== Tendência de compra por categoria de produto e número de filhos ===")                          
+print(df_tendencia)
+
+#Cruzando a coluna CL_FHL com dia da semana da compra, para ver se existe alguma relação entre o número de filhos e o dia da semana que a compra foi realizada.
+semana = {
+    'Monday': 'Segunda-feira',
+    'Tuesday': 'Terça-feira',
+    'Wednesday': 'Quarta-feira',
+    'Thursday': 'Quinta-feira',
+    'Friday': 'Sexta-feira',
+    'Saturday': 'Sábado',
+    'Sunday': 'Domingo'
+}
+#Distribuição de compras na semana por número de filhos em porcentagem.
+df["DIA_SEMANA"] = df["DATA"].dt.day_name().map(semana)
+df_cruzado = df.groupby("DIA_SEMANA")["CL_FHL"].mean().sort_values(ascending=False)
+df_tendencia = df.groupby(["DIA_SEMANA", "CL_FHL"]).size().unstack(fill_value=0)
+print("\n=== Tendência de compra na semana por número de filhos ===")  
+print(df_tendencia)
+
+compras_por_dia = (
+    df.groupby("DIA_SEMANA")
+      .size()
+      .sort_values(ascending=False)
+)
+
+print("\n=== Quantidade de registros por dia ===")
+print(compras_por_dia)
+
+compras_por_categoria = (
+    df["PR_CAT"]
+      .value_counts()
+)
+
+print("\n=== Registros por categoria ===")
+print(compras_por_categoria)
