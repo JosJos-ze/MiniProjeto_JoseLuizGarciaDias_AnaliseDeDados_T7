@@ -141,3 +141,33 @@ compras_por_categoria = (
 
 print("\n=== Registros por categoria ===")
 print(compras_por_categoria)
+
+# ################# sprint 5: Relatório e Documentação #################
+
+# ================== Exportação do dataset ==================
+df.to_csv("BaseVarejo_limpo.csv", index=False)
+print(f"\nDataset limpo exportado para BaseVarejo_limpo.csv ({len(df)} linhas, {df.shape[1]} colunas)")
+
+# Relatorio final  
+print(" ")
+print("\n" + "=" * 100)
+print("\n----- Relatório Final -----") 
+print("\n" + "=" * 100)
+print("\nO dataset foi importado com sucesso e passou por um processo de limpeza e análise estatística.")
+print("\nForam removidos valores duplicados e tratados valores nulos, garantindo a integridade dos dados.")
+print("\nA coluna CL_FHL foi analisada estatisticamente, fornecendo informações sobre a média, mediana, desvio padrão, moda, máximo, mínimo e quartis.")
+print("\nAlém disso, foram realizadas análises cruzadas entre a categoria do produto (PR_CAT) e o número de filhos (CL_FHL), bem como entre o número de filhos e o dia da semana da compra, revelando tendências de compra.") 
+print("\nO dataset limpo foi exportado para o arquivo 'BaseVarejo_limpo.csv', pronto para futuras análises e visualizações.")
+print("\n" + "=" * 100)
+print('\n-----Limitações-----')
+print("\n" + "=" * 100)
+print('\nO dataset nao apresenta informações contabeis, limitando a analise de dados apenas a informacoes de vendas, clientes e produtos.')
+print('\nComo sugestão diria para incluir esses dados no momento da coleta para que consiga tealizer analises sobre padroes de consumo por preço.')
+print("\n" + "=" * 100)
+print('\n-----Insights-----')
+print("\n" + "=" * 100)
+print('\nPodemos ver atraves dos dados fornecidos que a tendencia de compra é mais alta entre clientes com 1 a 3 filhos.')
+print('\nOutro dado interessante mostra que independente do numero de filhos a categoria de produto mais comprada é a de "Alimentos".')
+print('\nE por ultimo tambem temos que independente do numero de filhos o dia da semana em que as compras são mais frequentes é a Quarta-feira.')
+print(" ")
+print("\n" + "=" * 100)
