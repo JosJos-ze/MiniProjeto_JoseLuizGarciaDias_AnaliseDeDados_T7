@@ -5,7 +5,7 @@ Turma: Análise de Dados - T7
 1. SOBRE O PROJETO
 Este projeto realiza uma Análise Exploratória de Dados (AED) sobre uma base de varejo. O script utiliza Python e pandas para carregar os dados, inspecionar sua estrutura, tratar problemas básicos de qualidade, calcular estatísticas descritivas da coluna CL_FHL (número de filhos do cliente), analisar agrupamentos e exportar uma versão tratada da base.
 
-2. OBJETIVOS
+3. OBJETIVOS
 - Conhecer a estrutura e os tipos de dados do arquivo CSV.
 - Identificar duplicatas, valores ausentes e possíveis inconsistências.
 - Converter a coluna DATA para o tipo datetime.
